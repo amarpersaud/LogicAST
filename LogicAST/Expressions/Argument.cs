@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+
 namespace LogicAST.Expressions
 {
     public class Argument : IExpression
@@ -155,7 +157,7 @@ namespace LogicAST.Expressions
                 Propositions = null;
                 return false;
             }
-            if(LegalCharacters.NEGATION.Contains(argument[0]))
+            if(LegalCharacters.NEGATION.Contains(argument.Substring(0,1)))
             {
                 //Negating proposition
                 op = Operator.Negation;
@@ -183,7 +185,7 @@ namespace LogicAST.Expressions
                         return GetTree(op, left, right, out tree);
                     }
                 }
-                else if(LegalCharacters.LEFTPARENTHESES.IndexOf(argument[1]) != -1)
+                else if(LegalCharacters.LEFTPARENTHESES.Contains(argument.Substring(1,1)))
                 {
                     string leftProp = FindClosing(argument, 1);
                     TryParse(leftProp, ref Propositions, out left);
@@ -208,7 +210,7 @@ namespace LogicAST.Expressions
 
             }
             //Left side is within parenthesis
-            else if (LegalCharacters.LEFTPARENTHESES.IndexOf(argument[0]) != -1)
+            else if (LegalCharacters.LEFTPARENTHESES.Contains(argument.Substring(0,1)))
             {
                 string leftProp = FindClosing(argument, 0);
                 TryParse(leftProp, ref Propositions, out left);
@@ -264,21 +266,22 @@ namespace LogicAST.Expressions
         /// </summary>
         /// <param name="c">Char</param>
         /// <returns>Enum value</returns>
-        public static Operator GetOperator(char c)
+        public static Operator GetOperator(char ch)
         {
-                if(LegalCharacters.CONJUNCTION.Contains(c))
-                    return Operator.Conjunction;
-                if (LegalCharacters.DISJUNCTION.Contains(c))
-                    return Operator.Disjunction;
-                if(LegalCharacters.NEGATION.Contains(c))
-                    return Operator.Negation;
-                if(LegalCharacters.EQUIVALENCE.Contains(c))
-                    return Operator.Equivalence;
-                if(LegalCharacters.IMPLICATION.Contains(c))
-                    return Operator.Implication;
+            string c = new string(ch,1);
+            if(LegalCharacters.CONJUNCTION.Contains(c))
+                return Operator.Conjunction;
+            if (LegalCharacters.DISJUNCTION.Contains(c))
+                return Operator.Disjunction;
+            if(LegalCharacters.NEGATION.Contains(c))
+                return Operator.Negation;
+            if(LegalCharacters.EQUIVALENCE.Contains(c))
+                return Operator.Equivalence;
+            if(LegalCharacters.IMPLICATION.Contains(c))
+                return Operator.Implication;
 
-                return Operator.None;
-        }
+            return Operator.None;
+    }
         public static bool GetTree(Operator op, IExpression left, IExpression right, out IExpression tree)
         {
             switch (op)
@@ -315,11 +318,11 @@ namespace LogicAST.Expressions
             {
                 if (right < input.Length)
                 {
-                    if (LegalCharacters.LEFTPARENTHESES.IndexOf(input[right]) != -1)
+                    if (LegalCharacters.LEFTPARENTHESES.Contains(input.Substring(right, 1)))
                     {
                         depth++;
                     }
-                    else if (LegalCharacters.RIGHTPARENTHESES.IndexOf(input[right]) != -1)
+                    else if (LegalCharacters.RIGHTPARENTHESES.Contains(input.Substring(right)))
                     {
                         depth--;
                     }

@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace LogicAST
 {
-    public class LegalCharacters
+    public static class LegalCharacters
     {
-        public const string SYMBOLS = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm-_";
-        public const string EQUIVALENCE = "=";
-        public const string NEGATION = "~!";
-        public const string DISJUNCTION = "v|";
-        public const string CONJUNCTION = "&^";
-        public const string IMPLICATION = ">";
-        public const string LEFTPARENTHESES = "([{";
-        public const string RIGHTPARENTHESES = ")]}";
+        public const string SYMBOLS = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm_";
+        public static readonly string[] EQUIVALENCE = { "=" };
+        public static readonly string[] NEGATION = { "~" , "!"};
+        public static readonly string[] DISJUNCTION = { "v", "|" };
+        public static readonly string[] CONJUNCTION = { "&", "^" };
+        public static readonly string[] IMPLICATION = { ">" , "=>" , "->"};
+           
+        public static readonly string[] LEFTPARENTHESES = { "(", "[", "{" };
+        public static readonly string[] RIGHTPARENTHESES = { ")", "]", "}" };
     }
 }
