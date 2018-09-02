@@ -5,14 +5,7 @@ namespace LogicAST.Expressions
 {
     public class Argument : IExpression
     {
-        const string PROPOSITIONS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const string EQUIVALENCE = "=";
-        const string NEGATION = "~!";
-        const string DISJUNCTION = "v|";
-        const string CONJUNCTION = "&^";
-        const string IMPLICATION = ">";
-        const string LEFTPARENTHESES = "([{";
-        const string RIGHTPARENTHESES = ")]}";
+        
 
         public IExpression tree;
         public List<char> treePropositions = new List<char>();
@@ -162,11 +155,11 @@ namespace LogicAST.Expressions
                 Propositions = null;
                 return false;
             }
-            if(NEGATION.Contains(argument[0]))
+            if(LegalCharacters.NEGATION.Contains(argument[0]))
             {
                 //Negating proposition
                 op = Operator.Negation;
-                if(PROPOSITIONS.IndexOf(argument[1]) != -1)
+                if(LegalCharacters.SYMBOLS.IndexOf(argument[1]) != -1)
                 {
                     //Proposition, insert this immediately to left.
                     left = new Negation(new Proposition(argument[1], false));
@@ -190,7 +183,7 @@ namespace LogicAST.Expressions
                         return GetTree(op, left, right, out tree);
                     }
                 }
-                else if(LEFTPARENTHESES.IndexOf(argument[1]) != -1)
+                else if(LegalCharacters.LEFTPARENTHESES.IndexOf(argument[1]) != -1)
                 {
                     string leftProp = FindClosing(argument, 1);
                     TryParse(leftProp, ref Propositions, out left);
@@ -215,7 +208,7 @@ namespace LogicAST.Expressions
 
             }
             //Left side is within parenthesis
-            else if (LEFTPARENTHESES.IndexOf(argument[0]) != -1)
+            else if (LegalCharacters.LEFTPARENTHESES.IndexOf(argument[0]) != -1)
             {
                 string leftProp = FindClosing(argument, 0);
                 TryParse(leftProp, ref Propositions, out left);
@@ -236,7 +229,7 @@ namespace LogicAST.Expressions
 
                 }
             }
-            else if(PROPOSITIONS.IndexOf(argument[0]) != -1)
+            else if(LegalCharacters.SYMBOLS.IndexOf(argument[0]) != -1)
             {
 
                 if (!Propositions.Contains(argument[0]))
@@ -273,15 +266,15 @@ namespace LogicAST.Expressions
         /// <returns>Enum value</returns>
         public static Operator GetOperator(char c)
         {
-                if(CONJUNCTION.Contains(c))
+                if(LegalCharacters.CONJUNCTION.Contains(c))
                     return Operator.Conjunction;
-                if (DISJUNCTION.Contains(c))
+                if (LegalCharacters.DISJUNCTION.Contains(c))
                     return Operator.Disjunction;
-                if(NEGATION.Contains(c))
+                if(LegalCharacters.NEGATION.Contains(c))
                     return Operator.Negation;
-                if(EQUIVALENCE.Contains(c))
+                if(LegalCharacters.EQUIVALENCE.Contains(c))
                     return Operator.Equivalence;
-                if(IMPLICATION.Contains(c))
+                if(LegalCharacters.IMPLICATION.Contains(c))
                     return Operator.Implication;
 
                 return Operator.None;
@@ -322,11 +315,11 @@ namespace LogicAST.Expressions
             {
                 if (right < input.Length)
                 {
-                    if (LEFTPARENTHESES.IndexOf(input[right]) != -1)
+                    if (LegalCharacters.LEFTPARENTHESES.IndexOf(input[right]) != -1)
                     {
                         depth++;
                     }
-                    else if (RIGHTPARENTHESES.IndexOf(input[right]) != -1)
+                    else if (LegalCharacters.RIGHTPARENTHESES.IndexOf(input[right]) != -1)
                     {
                         depth--;
                     }
