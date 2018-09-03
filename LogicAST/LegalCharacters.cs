@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogicAST.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace LogicAST
 {
     public static class LegalCharacters
     {
-        public const string SYMBOLS = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm_";
+        public const string SYMBOLS = "QWERTYUIOPASDFGHJKLZXCBNMqwertyuiopasdfghjklzxcbnm_";
         public static readonly string[] EQUIVALENCE = { "=" };
         public static readonly string[] NEGATION = { "~" , "!"};
         public static readonly string[] DISJUNCTION = { "v", "|" };
@@ -17,5 +18,68 @@ namespace LogicAST
            
         public static readonly string[] LEFTPARENTHESES = { "(", "[", "{" };
         public static readonly string[] RIGHTPARENTHESES = { ")", "]", "}" };
+
+        public static Dictionary<OperatorType, int> Precedence = new Dictionary<OperatorType, int>() {
+
+            { OperatorType.ClosingParenthesis, 3 },
+            { OperatorType.OpeningParenthesis, 3 },
+            { OperatorType.Negation, 2 },
+            { OperatorType.Disjunction, 1 },
+            { OperatorType.Conjunction, 1 },
+            { OperatorType.Equivalence, 0 },
+            { OperatorType.Implication, 0 }
+        };
+
+        public static Dictionary<OperatorType, Associativity> Associativities = new Dictionary<OperatorType, Associativity>() {
+
+            { OperatorType.Negation, Associativity.Right },
+            { OperatorType.Disjunction, Associativity.Left },
+            { OperatorType.Conjunction, Associativity.Left },
+            { OperatorType.Equivalence, Associativity.Left },
+            { OperatorType.Implication, Associativity.Left }
+        };
+
+        public static readonly string[] OPERATORS = EQUIVALENCE.Concat(NEGATION.Concat(DISJUNCTION.Concat(CONJUNCTION.Concat(IMPLICATION.Concat(LEFTPARENTHESES.Concat(RIGHTPARENTHESES)))))).ToArray();
+
+        public static bool IsSymbol(string str)
+        {
+            if (!OPERATORS.Contains(str))
+            {
+                foreach (char c in str)
+                {
+                    if (!SYMBOLS.Contains(c))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        public static bool IsOperator(string str)
+        {
+            return OPERATORS.Contains(str);
+        }
+
+        public static OperatorType GetOperator(string c)
+        {
+            if (CONJUNCTION.Contains(c))
+                return OperatorType.Conjunction;
+            if (DISJUNCTION.Contains(c))
+                return OperatorType.Disjunction;
+            if (NEGATION.Contains(c))
+                return OperatorType.Negation;
+            if (EQUIVALENCE.Contains(c))
+                return OperatorType.Equivalence;
+            if (IMPLICATION.Contains(c))
+                return OperatorType.Implication;
+            if (LEFTPARENTHESES.Contains(c))
+                return OperatorType.OpeningParenthesis;
+            if (RIGHTPARENTHESES.Contains(c))
+                return OperatorType.ClosingParenthesis;
+
+            return OperatorType.None;
+        }
+
     }
 }
