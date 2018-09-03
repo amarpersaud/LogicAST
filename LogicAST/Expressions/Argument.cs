@@ -143,7 +143,7 @@ namespace LogicAST.Expressions
             //Right side.
             IExpression right;
             //Operator
-            Operator op = Operator.None;
+            OperatorType op = OperatorType.None;
 
             //Make uppercase for easier handling of upper/lowercase
             //Propositions. Remove spaces as well.
@@ -160,7 +160,7 @@ namespace LogicAST.Expressions
             if(LegalCharacters.NEGATION.Contains(argument.Substring(0,1)))
             {
                 //Negating proposition
-                op = Operator.Negation;
+                op = OperatorType.Negation;
                 if(LegalCharacters.SYMBOLS.IndexOf(argument[1]) != -1)
                 {
                     //Proposition, insert this immediately to left.
@@ -266,36 +266,36 @@ namespace LogicAST.Expressions
         /// </summary>
         /// <param name="c">Char</param>
         /// <returns>Enum value</returns>
-        public static Operator GetOperator(char ch)
+        public static OperatorType GetOperator(char ch)
         {
             string c = new string(ch,1);
             if(LegalCharacters.CONJUNCTION.Contains(c))
-                return Operator.Conjunction;
+                return OperatorType.Conjunction;
             if (LegalCharacters.DISJUNCTION.Contains(c))
-                return Operator.Disjunction;
+                return OperatorType.Disjunction;
             if(LegalCharacters.NEGATION.Contains(c))
-                return Operator.Negation;
+                return OperatorType.Negation;
             if(LegalCharacters.EQUIVALENCE.Contains(c))
-                return Operator.Equivalence;
+                return OperatorType.Equivalence;
             if(LegalCharacters.IMPLICATION.Contains(c))
-                return Operator.Implication;
+                return OperatorType.Implication;
 
-            return Operator.None;
-    }
-        public static bool GetTree(Operator op, IExpression left, IExpression right, out IExpression tree)
+            return OperatorType.None;
+        }
+        public static bool GetTree(OperatorType op, IExpression left, IExpression right, out IExpression tree)
         {
             switch (op)
             {
-                case Operator.Disjunction:
+                case OperatorType.Disjunction:
                     tree = new Disjunction(left, right);
                     return true;
-                case Operator.Conjunction:
+                case OperatorType.Conjunction:
                     tree = new Conjunction(left, right);
                     return true;
-                case Operator.Equivalence:
+                case OperatorType.Equivalence:
                     tree = new Equivalence(left, right);
                     return true;
-                case Operator.Implication:
+                case OperatorType.Implication:
                     tree = new Implication(left, right);
                     return true;
                 default:
