@@ -9,7 +9,7 @@ namespace LogicAST
 {
     public static class LegalCharacters
     {
-        public const string SYMBOLS = "QWERTYUIOPASDFGHJKLZXCBNMqwertyuiopasdfghjklzxcbnm_";
+        public const string SYMBOLS = "1234567890QWERTYUIOPASDFGHJKLZXCBNMqwertyuiopasdfghjklzxcbnm_";
         public static readonly string[] EQUIVALENCE = { "=" };
         public static readonly string[] NEGATION = { "~" , "!"};
         public static readonly string[] DISJUNCTION = { "v", "|" };
