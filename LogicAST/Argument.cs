@@ -12,7 +12,7 @@ namespace LogicAST
         public Dictionary<string, bool> PropositionValues = new Dictionary<string, bool>();
 
         public List<Expression> Propositions { get; private set; }
-        public string Conclusion { get; private set; }
+        public Expression Conclusion { get; private set; }
 
         public Argument(List<string> Propositions, Dictionary<string, bool> PropositionValues = null)
         {
@@ -51,8 +51,15 @@ namespace LogicAST
 
         public bool Evaluate()
         {
-            //Todo : Implement
-            return false;
+
+            bool props = true;
+
+            foreach (Expression p in Propositions)
+            {
+                props &= p.Evaluate();
+            }
+            
+            return Operator.Implies(props, Conclusion.Evaluate());
         }
 
         public bool IsValid()
