@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Argument.cs" />
     <Compile Include="Associativity.cs" />
     <Compile Include="Exceptions\UnexpectedSymbolException.cs" />
+    <Compile Include="Expression.cs" />
     <Compile Include="Expressions\Argument.cs" />
     <Compile Include="Expressions\Equivalence.cs" />
     <Compile Include="Expressions\Conjunction.cs" />
