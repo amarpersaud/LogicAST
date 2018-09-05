@@ -22,6 +22,31 @@ namespace LogicAST
         public string OperatorString;
         public int Precedence { get { return LegalCharacters.Precedence[this.Type]; } }
         public Associativity Associativity { get { return LegalCharacters.Associativities[this.Type]; } }
+
+        public static bool Implies(bool a, bool b)
+        {
+            return (!a) || b;
+        }
+        public static bool Equivalent(bool a, bool b)
+        {
+            return a == b;
+        }
+        public static bool And(bool a, bool b)
+        {
+            return a && b;
+        }
+        public static bool Or(bool a, bool b)
+        {
+            return a || b;
+        }
+        public static bool XOr(bool a, bool b)
+        {
+            return a ^ b;
+        }
+        public static bool Not(bool a)
+        {
+            return a;
+        }
     }
 
     public enum OperatorType
