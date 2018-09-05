@@ -10,7 +10,7 @@ namespace LogicAST
     public static class RPN
     {
 
-        public static bool IsInfix(string str)
+        public static bool IsInfix(this string str)
         {
             string[] split = str.Split(' ');
             if (LegalCharacters.IsSymbol(split[split.Length - 1]) && LegalCharacters.IsOperator(split[split.Length - 2]))
@@ -19,11 +19,11 @@ namespace LogicAST
             }
             return false;
         }
-        public static bool IsPostfix(string str)
+        public static bool IsPostfix(this string str)
         {
             return IsRPN(str);
         }
-        public static bool IsRPN(string str)
+        public static bool IsRPN(this string str)
         {
             string[] split = str.Split(' ');
             if (LegalCharacters.IsOperator(split[split.Length - 1])) {
@@ -37,7 +37,7 @@ namespace LogicAST
         /// </summary>
         /// <param name="infix">Infix string to formatt</param>
         /// <returns>Formatted infix string</returns>
-        public static string FormatInfixString(string infix)
+        public static string FormatInfixString(this string infix)
         {
             infix = infix.TrimAllWhitespace() + "  ";
 
@@ -82,7 +82,7 @@ namespace LogicAST
         /// </summary>
         /// <param name="infixString"></param>
         /// <returns></returns>
-        public static string InfixToRPN(string infixString)
+        public static string InfixToRPN(this string infixString)
         {
             infixString = FormatInfixString(infixString);
 

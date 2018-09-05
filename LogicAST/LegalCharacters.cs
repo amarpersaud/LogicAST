@@ -41,7 +41,7 @@ namespace LogicAST
 
         public static readonly string[] OPERATORS = EQUIVALENCE.Concat(NEGATION.Concat(DISJUNCTION.Concat(CONJUNCTION.Concat(IMPLICATION.Concat(LEFTPARENTHESES.Concat(RIGHTPARENTHESES)))))).ToArray();
 
-        public static bool IsSymbol(string str)
+        public static bool IsSymbol(this string str)
         {
             if (!OPERATORS.Contains(str))
             {
@@ -56,7 +56,7 @@ namespace LogicAST
             }
             return false;
         }
-        public static bool IsOperator(string str)
+        public static bool IsOperator(this string str)
         {
             return OPERATORS.Contains(str);
         }
