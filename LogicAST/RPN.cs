@@ -10,6 +10,28 @@ namespace LogicAST
     public static class RPN
     {
 
+        public static bool IsInfix(string str)
+        {
+            string[] split = str.Split(' ');
+            if (LegalCharacters.IsSymbol(split[split.Length - 1]) && LegalCharacters.IsOperator(split[split.Length - 2]))
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool IsPostfix(string str)
+        {
+            return IsRPN(str);
+        }
+        public static bool IsRPN(string str)
+        {
+            string[] split = str.Split(' ');
+            if (LegalCharacters.IsOperator(split[split.Length - 1])) {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Formats an infix string with proper whitespace
         /// </summary>
@@ -127,4 +149,7 @@ namespace LogicAST
             return output.Trim();
         }
     }
+
+
+
 }
