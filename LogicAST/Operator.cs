@@ -58,6 +58,7 @@ namespace LogicAST
         Negation,
         OpeningParenthesis,
         ClosingParenthesis,
+        Xor,
         None
     }
 }

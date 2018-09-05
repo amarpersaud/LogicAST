@@ -14,7 +14,7 @@ namespace LogicAST.Tests
         [TestMethod()]
         public void InfixToRPNTest()
         {
-            string res = RPN.InfixToRPN("pv~Q");
+            string res = RPN.InfixToRPN("pv(~Q)");
 
 
             Assert.AreEqual("p Q ~ v", res);

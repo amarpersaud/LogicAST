@@ -12,9 +12,10 @@ namespace LogicAST
         public const string SYMBOLS = "1234567890QWERTYUIOPASDFGHJKLZXCBNMqwertyuiopasdfghjklzxcbnm_";
         public static readonly string[] EQUIVALENCE = { "=" };
         public static readonly string[] NEGATION = { "~" , "!"};
-        public static readonly string[] DISJUNCTION = { "v", "|" };
-        public static readonly string[] CONJUNCTION = { "&", "^" };
+        public static readonly string[] DISJUNCTION = { "v", "|", "OR" };
+        public static readonly string[] CONJUNCTION = { "&", "^", "AND" };
         public static readonly string[] IMPLICATION = { ">" , "=>" , "->"};
+        public static readonly string[] XOR = { "XOR" };
            
         public static readonly string[] LEFTPARENTHESES = { "(", "[", "{" };
         public static readonly string[] RIGHTPARENTHESES = { ")", "]", "}" };
@@ -39,7 +40,13 @@ namespace LogicAST
             { OperatorType.Implication, Associativity.Left }
         };
 
-        public static readonly string[] OPERATORS = EQUIVALENCE.Concat(NEGATION.Concat(DISJUNCTION.Concat(CONJUNCTION.Concat(IMPLICATION.Concat(LEFTPARENTHESES.Concat(RIGHTPARENTHESES)))))).ToArray();
+        public static List<string> OPERATORS = EQUIVALENCE  .Concat(NEGATION)
+                                                            .Concat(DISJUNCTION)
+                                                            .Concat(CONJUNCTION)
+                                                            .Concat(IMPLICATION)
+                                                            .Concat(LEFTPARENTHESES)
+                                                            .Concat(RIGHTPARENTHESES)
+                                                            .Concat(XOR).ToList();
 
         public static bool IsSymbol(this string str)
         {
