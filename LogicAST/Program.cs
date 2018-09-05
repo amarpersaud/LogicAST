@@ -23,8 +23,10 @@ namespace LogicAST
                     case "":
                         break;
                     default:
-                        Argument arg = new Argument(inp);
-                        Console.WriteLine(arg.PrintTable() + "\n");
+                        List<string> eps = new List<string>();
+                        eps.Add(inp);
+                        Argument arg = new Argument(eps);
+                        Console.WriteLine(arg.ToString() + "\n");
                         Console.WriteLine("Press Enter to Continue...");
                         Console.ReadLine();
                         Console.Clear();
