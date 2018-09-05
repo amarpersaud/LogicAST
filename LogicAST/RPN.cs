@@ -96,7 +96,7 @@ namespace LogicAST
             string[] infixSplit = infixString.Split(' ');
             for(int i = infixSplit.Length - 1; i >= 0; i--)
             {
-                infixStack.Push(infixSplit[i]);
+                infixStack.Push(infixSplit[i].Trim());
             }
 
             while(infixStack.Count > 0)
@@ -121,7 +121,7 @@ namespace LogicAST
                     }
                     else
                     {
-                        while(operatorStack.Count > 0 && (operatorStack.Peek().Precedence > currentOperator.Precedence || (operatorStack.Peek().Precedence == currentOperator.Precedence && operatorStack.Peek().Associativity == Associativity.Left) && operatorStack.Peek().Type != OperatorType.OpeningParenthesis))
+                        while(operatorStack.Count > 0 && operatorStack.Peek().Type != OperatorType.OpeningParenthesis && (operatorStack.Peek().Precedence > currentOperator.Precedence || (operatorStack.Peek().Precedence == currentOperator.Precedence && operatorStack.Peek().Associativity == Associativity.Left) && operatorStack.Peek().Type != OperatorType.OpeningParenthesis))
                         {
                             output += operatorStack.Pop().OperatorString + " ";
                         }
