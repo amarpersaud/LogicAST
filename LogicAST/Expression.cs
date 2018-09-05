@@ -49,11 +49,5 @@ namespace LogicAST
             return false;
         }
 
-        public bool IsValid()
-        {
-            //Todo : Implement
-            return false;
-        }
-
     }
 }
