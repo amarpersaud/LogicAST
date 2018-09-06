@@ -65,8 +65,13 @@ namespace LogicAST
         public bool IsValid()
         {
             //Todo : implement
+
             return false;
         }
-
+        public bool[,] GetPermutations(int Premises)
+        {
+            //Todo: implement
+            return null;
+        }
     }
 }
