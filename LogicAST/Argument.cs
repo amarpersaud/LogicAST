@@ -11,31 +11,31 @@ namespace LogicAST
     {
         public Dictionary<string, bool> PropositionValues = new Dictionary<string, bool>();
 
-        public List<Expression> Propositions { get; private set; }
+        public List<Expression> Premises { get; private set; }
         public Expression Conclusion { get; private set; }
 
-        public Argument(List<string> Propositions, Dictionary<string, bool> PropositionValues = null)
+        public Argument(List<string> Premises, Dictionary<string, bool> PropositionValues = null)
         {
-            SetPropositions(Propositions);
+            SetPremises(Premises);
             if(!(PropositionValues is null))
             {
                 this.PropositionValues = PropositionValues;
             }
         }
 
-        public void SetPropositions(List<string>Propositions)
+        public void SetPremises(List<string> Premises)
         {
-            foreach (string exp in Propositions)
+            foreach (string exp in Premises)
             {
                 if (exp.IsInfix())
                 {
                     Expression newExp = new Expression(exp.InfixToRPN(), this.PropositionValues);
-                    this.Propositions.Add(newExp);
+                    this.Premises.Add(newExp);
                 }
                 else if (exp.IsPostfix())
                 {
                     Expression newExp = new Expression(exp, this.PropositionValues);
-                    this.Propositions.Add(newExp);
+                    this.Premises.Add(newExp);
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace LogicAST
 
             bool props = true;
 
-            foreach (Expression p in Propositions)
+            foreach (Expression p in Premises)
             {
                 props &= p.Evaluate();
             }
