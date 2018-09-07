@@ -93,7 +93,8 @@ namespace Logic.Base
                 bool allTrue = true;
                 foreach(Expression e in Premises)
                 {
-                    allTrue &= e.Evaluate();
+                    e.PropositionValues = this.PropositionValues;
+                    allTrue = allTrue && e.Evaluate();
                 }
                 if (allTrue)
                 {
