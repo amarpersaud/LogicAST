@@ -122,5 +122,18 @@ namespace LogicAST
             }
         }
 
+        public List<string> GetPropositions()
+        {
+            List<string> res = new List<string>();
+            foreach(string s in this.Value.Split(' '))
+            {
+                if (s.IsSymbol())
+                {
+                    res.Add(s);
+                }
+            }
+            return res;
+        }
+
     }
 }
