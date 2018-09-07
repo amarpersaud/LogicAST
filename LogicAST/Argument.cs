@@ -64,9 +64,33 @@ namespace LogicAST
 
         public bool IsValid()
         {
-            //Todo : implement
+            var permutations = GetPermutations(this.PropositionValues.Count);
+            Dictionary<string, bool> PropVals = PropositionValues.ToDictionary(x=> x.Key, x=> x.Value);
+            //For each row in the table
+            for(int i = 0; i < permutations.Length; i++)
+            {
+                //
+                for(int j = 0; j < PropositionValues.Count; j++)
+                {
+                    PropositionValues[PropositionValues.Keys.ElementAt(j)] = permutations[i][j]; 
+                }
 
-            return false;
+                bool allTrue = true;
+                foreach(Expression e in Premises)
+                {
+                    allTrue &= e.Evaluate();
+                }
+                if (allTrue)
+                {
+                    if (!Conclusion.Evaluate())
+                    {
+                        PropositionValues = PropVals;
+                        return false;
+                    }
+                }
+            }
+            PropositionValues = PropVals;
+            return true;
         }
         public static bool[][] GetPermutations(int Propositions)
         {
