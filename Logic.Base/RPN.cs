@@ -12,7 +12,12 @@ namespace Logic.Base
 
         public static bool IsInfix(this string str)
         {
+            str = str.FormatInfixString();
             string[] split = str.Split(' ');
+            if(split.Length < 2)
+            {
+                return true;
+            }
             if (LegalCharacters.IsSymbol(split[split.Length - 1]) && LegalCharacters.IsOperator(split[split.Length - 2]))
             {
                 return true;
