@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4B51D1D0-CE7F-459F-9861-C003F3EEFD12}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LogicAST</RootNamespace>
-    <AssemblyName>LogicAST</AssemblyName>
+    <RootNamespace>Logic.UI</RootNamespace>
+    <AssemblyName>Logic.UI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -11,24 +11,51 @@ namespace Logic.UI
     {
         static void Main(string[] args)
         {
+            List<string> arguments = new List<string>();
+            string conclusion = "";
             while (true)
             {
-                Console.WriteLine("Enter Argument. \nOperators: \n\tOr: |\t\t\tAnd: &\n\tEquivalence: =\t\tImplication: >\n\tNegation: ~\n");
+                Console.WriteLine("");
                 string inp = Console.ReadLine();
-                switch (inp)
+                string[] split = inp.Split(' ');
+                switch (split[0])
                 {
+                    case "prem":
+                    case "premise":
+                        string premise = inp.Remove(0, split[0].Length);
+                        arguments.Add(premise);
+                        Console.WriteLine("Added premise: " + premise);
+                        break;
+                    case "clear premises":
+                        arguments.Clear();
+                        Console.WriteLine("Premises cleared");
+                        break;
+                    case "conc":
+                    case "conclusion":
+                        string conc = inp.Remove(0, split[0].Length);
+                        conclusion = conc;
+                        Console.WriteLine("Set conclusion: " + conclusion);
+                        break;
                     case "exit":
                         Environment.Exit(0);
                         break;
                     case "":
                         break;
-                    default:
-                        List<string> eps = new List<string>();
-                        eps.Add(inp);
-                        Argument arg = new Argument(eps);
-                        Console.WriteLine(arg.ToString() + "\n");
+                    case "valid":
+
+                        Console.WriteLine("\n ==========\n");
+                        foreach (string s in arguments)
+                        {
+                            Console.WriteLine(s);
+                        }
+
+                        Console.WriteLine(".`.");
+                        Console.WriteLine(conclusion);
+                        Console.WriteLine();
+                        Argument arg = new Argument(arguments, conclusion);
+                        Console.WriteLine("Argument is valid:" + arg.IsValid() + "\n");
                         Console.WriteLine("Press Enter to Continue...");
-                        Console.ReadLine();
+                        Console.ReadKey(true);
                         Console.Clear();
                         break;
                 }
