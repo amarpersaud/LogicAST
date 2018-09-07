@@ -26,13 +26,28 @@ namespace LogicAST.Tests
 
             };
 
-            for(int i = 0; i < output.Length; i++)
+            for (int i = 0; i < output.Length; i++)
             {
                 for (int j = 0; j < output[i].Length; j++)
                 {
                     Assert.IsTrue(expected[i][j].Equals(output[i][j]));
                 }
             }
+        }
+
+        [TestMethod()]
+        public void IsValidTest()
+        {
+            List<string> prem = new List<string>();
+
+            prem.Add("p=>q");
+            prem.Add("p");
+
+            string conc = "q";
+
+            Argument a = new Argument(prem, conc);
+
+            Assert.Fail();
         }
     }
 }

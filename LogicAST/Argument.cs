@@ -14,13 +14,14 @@ namespace LogicAST
         public List<Expression> Premises { get; private set; }
         public Expression Conclusion { get; private set; }
 
-        public Argument(List<string> Premises, Dictionary<string, bool> PropositionValues = null)
+        public Argument(List<string> Premises, string Conclusion, Dictionary<string, bool> PropositionValues = null)
         {
-            SetPremises(Premises);
             if(!(PropositionValues is null))
             {
                 this.PropositionValues = PropositionValues;
             }
+            SetPremises(Premises);
+            this.Conclusion = new Expression(Conclusion, this.PropositionValues);
         }
 
         public void SetPremises(List<string> Premises)
@@ -41,6 +42,19 @@ namespace LogicAST
                 {
                     throw new InvalidExpressionException("Expression invalid. Expected valid infix or postfix expression");
                 }
+            }
+
+            foreach(Expression e in this.Premises)
+            {
+                List<string> strs = e.GetPropositions();
+                foreach(string s in strs)
+                {
+                    if (!PropositionValues.ContainsKey(s))
+                    {
+                        PropositionValues.Add(s, false);
+                    }
+                }
+
             }
         }
 
