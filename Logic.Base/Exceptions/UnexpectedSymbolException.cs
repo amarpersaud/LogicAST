@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicAST.Exceptions
+namespace Logic.Base.Exceptions
 {
     [System.Serializable]
     public class UnexpectedSymbolException : Exception

@@ -57,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogicAST\LogicAST.csproj">
-      <Project>{4B51D1D0-CE7F-459F-9861-C003F3EEFD12}</Project>
-      <Name>LogicAST</Name>
+    <ProjectReference Include="..\Logic.Base\Logic.Base.csproj">
+      <Project>{f1ba36e7-def3-4693-9ae7-2090b2b2ce4b}</Project>
+      <Name>Logic.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

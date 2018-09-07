@@ -42,19 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Argument.cs" />
-    <Compile Include="Associativity.cs" />
-    <Compile Include="Exceptions\UnexpectedSymbolException.cs" />
-    <Compile Include="Expression.cs" />
-    <Compile Include="LegalCharacters.cs" />
-    <Compile Include="Operator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RPN.cs" />
-    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic.Base\Logic.Base.csproj">
+      <Project>{f1ba36e7-def3-4693-9ae7-2090b2b2ce4b}</Project>
+      <Name>Logic.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

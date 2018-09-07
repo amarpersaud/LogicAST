@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace LogicAST
+namespace Logic.Base
 {
     public static class StringExtensions
     {

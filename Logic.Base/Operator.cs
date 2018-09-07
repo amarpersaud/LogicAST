@@ -1,6 +1,6 @@
-﻿using LogicAST.Exceptions;
+﻿using Logic.Base.Exceptions;
 
-namespace LogicAST
+namespace Logic.Base
 {
 
     public class Operator

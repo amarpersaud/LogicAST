@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using LogicAST.Exceptions;
+using Logic.Base.Exceptions;
 
-namespace LogicAST
+namespace Logic.Base
 {
     public class Expression
     {

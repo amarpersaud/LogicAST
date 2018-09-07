@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicAST.Tests
+namespace Logic.Base.Tests
 {
     [TestClass()]
     public class ArgumentTests

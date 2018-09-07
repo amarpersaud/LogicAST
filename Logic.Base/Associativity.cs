@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicAST
+namespace Logic.Base
 {
     public enum Associativity
     {

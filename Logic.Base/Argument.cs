@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace LogicAST
+namespace Logic.Base
 {
     public class Argument
     {

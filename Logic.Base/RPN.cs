@@ -1,11 +1,11 @@
-﻿using LogicAST.Exceptions;
+﻿using Logic.Base.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicAST
+namespace Logic.Base
 {
     public static class RPN
     {
