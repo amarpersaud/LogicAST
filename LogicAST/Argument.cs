@@ -68,10 +68,38 @@ namespace LogicAST
 
             return false;
         }
-        public bool[,] GetPermutations(int Premises)
+        public static bool[][] GetPermutations(int Propositions)
         {
-            //Todo: implement
-            return null;
+            //There are n number of T/F values in each row,
+            //and 2^n number of rows, where n is the number of propositions
+            bool[][] output = new bool[(int)Math.Pow(2, Propositions)][];
+
+            output[0] = new bool[Propositions];
+            for(int i = 0; i < Propositions; i++) {
+                output[0][i] = true;
+            }
+
+            for(int i = 1; i < output.Length; i++)
+            {
+                output[i] = NextPermutation(output[i - 1]);
+            }
+
+            return output;
+        }
+        public static bool[] NextPermutation(bool[] prev)
+        {
+            bool[] newPerm = (bool[])prev.Clone();
+
+            bool carry = true;
+            for(int i = newPerm.Length - 1; i >= 0; i--)
+            {
+                if (carry)
+                {
+                    carry = !newPerm[i];
+                    newPerm[i] = !newPerm[i];
+                }
+            }
+            return newPerm;
         }
     }
 }
