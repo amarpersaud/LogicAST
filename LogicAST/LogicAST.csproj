@@ -46,14 +46,6 @@
     <Compile Include="Associativity.cs" />
     <Compile Include="Exceptions\UnexpectedSymbolException.cs" />
     <Compile Include="Expression.cs" />
-    <Compile Include="Expressions\Argument.cs" />
-    <Compile Include="Expressions\Equivalence.cs" />
-    <Compile Include="Expressions\Conjunction.cs" />
-    <Compile Include="Expressions\Disjuction.cs" />
-    <Compile Include="Expressions\Proposition.cs" />
-    <Compile Include="Expressions\IExpression.cs" />
-    <Compile Include="Expressions\Implication.cs" />
-    <Compile Include="Expressions\Negation.cs" />
     <Compile Include="LegalCharacters.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="Program.cs" />
