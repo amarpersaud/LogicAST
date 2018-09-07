@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LogicAST;
+using Logic.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +14,19 @@ namespace Logic.Base.Tests
         [TestMethod()]
         public void InfixToRPNTest()
         {
-            string res = RPN.InfixToRPN("pv(~Q)");
+            string[] props = {
+                "p"
+            };
 
-
-            Assert.AreEqual("p Q ~ v", res);
+            string[] results =
+            {
+                "p"
+            };
+            for (int i = 0; i < props.Length; i++)
+            {
+                string formatted = RPN.InfixToRPN(props[i]);
+                Assert.AreEqual(formatted, results[i]);
+            }
         }
 
         [TestMethod()]
@@ -27,7 +36,8 @@ namespace Logic.Base.Tests
                 "a&b>c",
                 "c^d=f",
                 "PropA &PropB^PropC>PropD",
-                "pv~Q"
+                "pv~Q",
+                "p"
             };
 
             string[] results =
@@ -35,11 +45,13 @@ namespace Logic.Base.Tests
                 "a & b > c",
                 "c ^ d = f",
                 "PropA & PropB ^ PropC > PropD",
-                "p v ~ Q"
+                "p v ~ Q",
+                "p"
             };
             for(int i = 0; i < props.Length; i++)
             {
-                Assert.AreEqual(RPN.FormatInfixString(props[i]), results[i]);
+                string formatted = RPN.FormatInfixString(props[i]);
+                Assert.AreEqual(formatted, results[i]);
             }
         }
 
@@ -51,11 +63,11 @@ namespace Logic.Base.Tests
 
             foreach(string s in operators)
             {
-                Assert.IsTrue(LogicAST.LegalCharacters.IsOperator(s));
+                Assert.IsTrue(LegalCharacters.IsOperator(s));
             }
             foreach(string s in nonOperators)
             {
-                Assert.IsFalse(LogicAST.LegalCharacters.IsOperator(s));
+                Assert.IsFalse(LegalCharacters.IsOperator(s));
             }
         }
     }

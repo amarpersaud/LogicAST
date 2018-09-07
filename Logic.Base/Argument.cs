@@ -26,6 +26,7 @@ namespace Logic.Base
 
         public void SetPremises(List<string> Premises)
         {
+            this.Premises = new List<Expression>();
             foreach (string exp in Premises)
             {
                 if (exp.IsInfix())
@@ -33,7 +34,7 @@ namespace Logic.Base
                     Expression newExp = new Expression(exp.InfixToRPN(), this.PropositionValues);
                     this.Premises.Add(newExp);
                 }
-                else if (exp.IsPostfix())
+                else if (exp.IsPostfix() || exp.IsSymbol())
                 {
                     Expression newExp = new Expression(exp, this.PropositionValues);
                     this.Premises.Add(newExp);

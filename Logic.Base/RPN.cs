@@ -14,7 +14,11 @@ namespace Logic.Base
         {
             str = str.FormatInfixString();
             string[] split = str.Split(' ');
-            if(split.Length < 2)
+            if(split.Length == 0)
+            {
+                return false;
+            }
+            if(split.Length == 1)
             {
                 return true;
             }

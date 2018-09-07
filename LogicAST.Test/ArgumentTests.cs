@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LogicAST;
+using Logic.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,14 +40,13 @@ namespace Logic.Base.Tests
         {
             List<string> prem = new List<string>();
 
-            prem.Add("p=>q");
+            prem.Add("p>q");
             prem.Add("p");
-
             string conc = "q";
 
             Argument a = new Argument(prem, conc);
 
-            Assert.Fail();
+            Assert.IsTrue(a.IsValid());
         }
     }
 }
