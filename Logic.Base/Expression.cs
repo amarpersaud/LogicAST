@@ -79,8 +79,9 @@ namespace Logic.Base
                     }
                     else
                     {
-                        bool a = bool.Parse(stk.Pop());
+                        //Pop the right operand off first, then the left operand.  
                         bool b = bool.Parse(stk.Pop());
+                        bool a = bool.Parse(stk.Pop());
                         bool r = false;
                         switch (op.Type)
                         {
