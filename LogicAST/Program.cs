@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LogicAST.Expressions;
+using Logic.Base;
 
-namespace LogicAST
+namespace Logic.UI
 {
     class Program
     {
