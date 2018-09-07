@@ -54,9 +54,6 @@ namespace Logic.UI
                         Console.WriteLine();
                         Argument arg = new Argument(arguments, conclusion);
                         Console.WriteLine("Argument is valid:" + arg.IsValid() + "\n");
-                        Console.WriteLine("Press Enter to Continue...");
-                        Console.ReadKey(true);
-                        Console.Clear();
                         break;
                 }
             }
